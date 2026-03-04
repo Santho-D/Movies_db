@@ -54,17 +54,18 @@ def view_movies():
     cursor.execute("""
     select * from movies
     left join movies_rating on movies.id = movies_rating.movie_id
+    order by franchise, year
     """)
     result = cursor.fetchall()
     for row in result:
         print(f"\n{row[1]} ({row[2]}) - {row[3]} | {row[4]}")
-        if row[5] != None:
+        if row[6] != None:
             if row[8]:
                 print(f"Rating: {row[8]}/10 | Watched: {row[9]}")
                 print(f"Date: {row[10]}")
                 print(f"Notes: {row[11]}")
-            else:
-                print("Not yet rated")
+        else:
+            print("Not yet rated")
     print("-" * 40)
 
     connection.commit()
@@ -74,7 +75,7 @@ def update_movie():
     result = find_movie()
     if result is None:
         return
-    column = input ("What do you want to update(Title,Year,Directo,Genre): ")
+    column = input ("What do you want to update(Title,Year,Director,Genre,Franchise): ")
     updated = input ("What do you want to update it to? ")
     connection = sqlite3.connect("movies.db")
     cursor = connection.cursor()
