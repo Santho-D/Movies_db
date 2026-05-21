@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MoviesDB</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <main>
+    <header>
+      <h1>MoviesDB</h1>
+      <p>Simple Flask web GUI starter page.</p>
+    </header>
+
+    <section>
+      <h2>Add a movie</h2>
+      <form action="{{ url_for('add_movie') }}" method="post">
+        <label>
+          Title
+          <input type="text" name="title" required>
+        </label>
+        <label>
+          Year
+          <input type="text" name="year">
+        </label>
+        <button type="submit">Add movie</button>
+      </form>
+    </section>
+
+    <section>
+      <h2>Movie list</h2>
+      <ul>
+        {% for movie in movies %}
+          <li>{{ movie.title }} ({{ movie.year }})</li>
+        {% else %}
+          <li>No movies yet.</li>
+        {% endfor %}
+      </ul>
+    </section>
+  </main>
+</body>
+</html>
