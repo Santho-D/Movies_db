@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MoviesDB</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <link rel="stylesheet" href="../static/style.css">
 </head>
 <body>
   <main>
@@ -15,7 +15,7 @@
 
     <section>
       <h2>Add a movie</h2>
-      <form action="{{ url_for('add_movie') }}" method="post">
+      <form action="" method="post">
         <label>
           Title
           <input type="text" name="title" required>
@@ -31,11 +31,7 @@
     <section>
       <h2>Movie list</h2>
       <ul>
-        {% for movie in movies %}
-          <li>{{ movie.title }} ({{ movie.year }})</li>
-        {% else %}
-          <li>No movies yet.</li>
-        {% endfor %}
+        
       </ul>
     </section>
   </main>
